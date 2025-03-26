@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.1.3">
+  <diagram name="Page-1" id="kmXMFV7SZ8LkbVxJU7J5">
+    <mxGraphModel dx="1674" dy="820" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-33" value="AWS Step Functions workflow" style="sketch=0;outlineConnect=0;gradientColor=none;html=1;whiteSpace=wrap;fontSize=12;fontStyle=0;shape=mxgraph.aws4.group;grIcon=mxgraph.aws4.group_aws_step_functions_workflow;strokeColor=#545B64;fillColor=none;verticalAlign=top;align=left;spacingLeft=30;fontColor=#545B64;dashed=0;" vertex="1" parent="1">
+          <mxGeometry x="79" y="110" width="670" height="620" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-18" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.rds;" vertex="1" parent="1">
+          <mxGeometry x="164" y="370" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-19" value="" style="endArrow=classic;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="WEaCYuA4cYH8EHMnCWFb-18" target="WEaCYuA4cYH8EHMnCWFb-22">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="524" y="550" as="sourcePoint" />
+            <mxPoint x="334" y="409" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-20" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Data Stored in RDS&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="169" y="470" width="85" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-21" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Extract&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="274" y="410" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-22" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#8C4FFF;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.glue;" vertex="1" parent="1">
+          <mxGeometry x="374" y="370" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-23" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#7AA116;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.bucket;" vertex="1" parent="1">
+          <mxGeometry x="375.73" y="180" width="86.54" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-24" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="404.9102631578947" y="370" as="sourcePoint" />
+            <mxPoint x="404" y="270" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-25" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="433.9997368421053" y="270" as="sourcePoint" />
+            <mxPoint x="434.9102631578947" y="370" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-26" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Intermediate Storage&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="389" y="140" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-27" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#E7157B;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.step_functions;" vertex="1" parent="1">
+          <mxGeometry x="380" y="600" width="78" height="78" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-28" value="" style="endArrow=classic;html=1;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="149" y="590" as="sourcePoint" />
+            <mxPoint x="689" y="590" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-29" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Orchestration&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="364" y="560" width="110" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-30" value="AWS Step Functions" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="354.75" y="678" width="128.5" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-31" value="" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.redshift;" vertex="1" parent="1">
+          <mxGeometry x="569" y="370" width="90" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-32" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;AWS Glue For&amp;nbsp; ETL&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="384" y="470" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-35" value="" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="WEaCYuA4cYH8EHMnCWFb-22" target="WEaCYuA4cYH8EHMnCWFb-31">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="483.25" y="430" as="sourcePoint" />
+            <mxPoint x="533.25" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-36" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Load&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="483.25" y="410" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="WEaCYuA4cYH8EHMnCWFb-37" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;Data Stored at the Raw, Curated and Layers&lt;/font&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="554" y="480" width="120" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
