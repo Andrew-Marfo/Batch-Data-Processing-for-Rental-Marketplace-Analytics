@@ -5,7 +5,7 @@ from db_connection_utils.db_conn_utils import connect_to_database, create_table,
 df = pd.read_csv('./data/data/user_viewing.csv')
 
 # replacing NaN values with None
-# df = df.where(pd.notnull(df), None)
+df = df.where(pd.notnull(df), None)
 
 create_table_query = """
 CREATE TABLE IF NOT EXISTS user_viewing (
@@ -23,8 +23,11 @@ insert_query = """
             user_id, apartment_id, viewed_at, is_wishlisted, call_to_action
         ) VALUES (%s, %s, %s, %s, %s)
         ON DUPLICATE KEY UPDATE
-            is_wishlisted=VALUES(is_wishlisted),
-            call_to_action=VALUES(call_to_action);
+            user_id=VALUES(user_id),
+            apartment_id=VALUES(apartment_id),
+            viewed_at = VALUES(viewed_at),
+            is_wishlisted = VALUES(is_wishlisted),
+            call_to_action = VALUES(call_to_action);
 """
 
 def main():
