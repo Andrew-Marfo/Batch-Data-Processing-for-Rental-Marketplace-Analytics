@@ -13,8 +13,7 @@ CREATE TABLE IF NOT EXISTS user_viewing (
     apartment_id BIGINT,
     viewed_at VARCHAR(50),
     is_wishlisted BOOLEAN,
-    call_to_action VARCHAR(50),
-    PRIMARY KEY (user_id, apartment_id)
+    call_to_action VARCHAR(50)
 );
 """
 
