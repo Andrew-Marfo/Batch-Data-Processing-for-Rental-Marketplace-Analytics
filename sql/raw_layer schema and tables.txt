@@ -1,0 +1,56 @@
+CREATE SCHEMA IF NOT EXISTS raw_layer;
+
+-- Raw apartments table
+CREATE TABLE IF NOT EXISTS raw_layer.apartments (
+    id BIGINT,
+    title VARCHAR(255),
+    source VARCHAR(100),
+    price DOUBLE PRECISION,
+    currency VARCHAR(3),
+    listing_created_on VARCHAR(50),
+    is_active BOOLEAN,
+    last_modified_timestamp VARCHAR(50)
+);
+
+-- Raw apartment_attributes table
+CREATE TABLE IF NOT EXISTS raw_layer.apartments_attributes (
+    id BIGINT,
+    category VARCHAR(50),
+    body VARCHAR(MAX),
+    amenities VARCHAR(MAX),
+    bathrooms INTEGER,
+    bedrooms INTEGER,
+    fee DOUBLE PRECISION,
+    has_photo BOOLEAN,
+    pets_allowed VARCHAR(10),
+    price_display VARCHAR(50),
+    price_type VARCHAR(50),
+    square_feet DOUBLE PRECISION,
+    address VARCHAR(255),
+    cityname VARCHAR(255),
+    state VARCHAR(255),
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION
+);
+
+-- Raw bookings table
+CREATE TABLE IF NOT EXISTS raw_layer.bookings (
+    booking_id BIGINT,
+    user_id BIGINT,
+    apartment_id BIGINT,
+    booking_date VARCHAR(50),
+    checkin_date VARCHAR(50),
+    checkout_date VARCHAR(50),
+    total_price DOUBLE PRECISION,
+    currency VARCHAR(3),
+    booking_status VARCHAR(20)
+);
+
+-- Raw user_viewing table
+CREATE TABLE IF NOT EXISTS raw_layer.user_viewing (
+    user_id BIGINT,
+    apartment_id BIGINT,
+    viewed_at VARCHAR(50),
+    is_wishlisted BOOLEAN,
+    call_to_action VARCHAR(50)
+);

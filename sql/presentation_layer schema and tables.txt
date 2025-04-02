@@ -1,0 +1,83 @@
+CREATE SCHEMA IF NOT EXISTS presentation_layer;
+
+-- Rental Performance Metrics Tables:
+
+-- Average Listing Price
+CREATE TABLE presentation_layer.average_listing_price (
+    year INT,
+    week INT,
+    average_price DOUBLE PRECISION,
+    week_start_date VARCHAR(50),
+    week_end_date VARCHAR(50)
+)
+DISTKEY(year)
+SORTKEY(year, week);
+
+-- Occupancy Rate
+CREATE TABLE presentation_layer.occupancy_rate (
+    year INT,
+    month INT,
+    active_listings BIGINT,
+    days_in_month INT,
+    available_nights BIGINT,
+    total_bookings BIGINT,
+    total_booked_nights BIGINT,
+    occupancy_rate DOUBLE PRECISION
+)
+DISTKEY(year)
+SORTKEY(year, month);
+
+-- Most Popular Locations
+CREATE TABLE presentation_layer.popular_locations (
+    year INT,
+    week INT,
+    cityname VARCHAR(100),
+    booking_count BIGINT,
+    rank INT)
+DISTKEY(year)
+SORTKEY(year, week);
+
+-- Top Performing Listings
+CREATE TABLE presentation_layer.top_performing_listings (
+    year INT,
+    week INT,
+    id BIGINT,
+    title VARCHAR(255),
+    cityname VARCHAR(100),
+    week_revenue DOUBLE PRECISION,
+    rank INT)
+DISTKEY(year)
+SORTKEY(year, week, rank);
+
+
+-- User Engagement Metrics Tables:
+
+-- User Bookings
+CREATE TABLE presentation_layer.user_weekly_bookings (
+    year INT,
+    week INT,
+    user_id BIGINT,
+    total_bookings BIGINT
+)
+DISTKEY(year)
+SORTKEY(year, week);
+
+-- Average Booking Duration
+CREATE TABLE presentation_layer.average_booking_duration (
+    year INT,
+    week INT,
+    avg_booking_duration DOUBLE PRECISION
+)
+DISTKEY(year)
+SORTKEY(year, week);
+
+-- Repeat Customer Rate
+CREATE TABLE presentation_layer.repeat_customer_rate (
+    year INT,
+    month INT,
+    total_users BIGINT,
+    repeat_users BIGINT,
+    repeat_rate DOUBLE PRECISION
+)
+DISTKEY(year)
+SORTKEY(year, month);

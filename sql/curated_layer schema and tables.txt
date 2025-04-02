@@ -1,0 +1,53 @@
+CREATE SCHEMA IF NOT EXISTS curated_layer;
+
+-- Curated apartments table (joined data)
+CREATE TABLE IF NOT EXISTS curated_layer.curated_apartments (
+    id BIGINT PRIMARY KEY,
+    title VARCHAR(255),
+    source VARCHAR(255),
+    price DOUBLE PRECISION,
+    currency VARCHAR(3),
+    listing_created_on DATE,
+    is_active BOOLEAN,
+    last_modified_timestamp DATE,
+    category VARCHAR(50),
+    body VARCHAR(MAX),
+    amenities VARCHAR(MAX),
+    bathrooms INTEGER,
+    bedrooms INTEGER,
+    fee DOUBLE PRECISION,
+    has_photo BOOLEAN,
+    pets_allowed VARCHAR(50),
+    price_display VARCHAR(50),
+    price_type VARCHAR(50),
+    square_feet INT,
+    address VARCHAR(255),
+    cityname VARCHAR(255),
+    state VARCHAR(255),
+    latitude DOUBLE PRECISION,
+    longitude DOUBLE PRECISION
+) DISTKEY(id) SORTKEY(cityname, is_active);
+
+-- Curated bookings table
+CREATE TABLE IF NOT EXISTS curated_layer.curated_bookings (
+    booking_id BIGINT PRIMARY KEY,
+    user_id BIGINT,
+    apartment_id BIGINT,
+    booking_date DATE,
+    checkin_date DATE,
+    checkout_date DATE,
+    total_price DOUBLE PRECISION,
+    currency VARCHAR(3),
+    booking_status VARCHAR(20),
+    stay_days INTEGER,
+    booking_week INTEGER
+) DISTKEY(apartment_id) SORTKEY(booking_date);
+
+-- Curated user_viewing table
+CREATE TABLE IF NOT EXISTS curated_layer.curated_user_viewing (
+    user_id BIGINT,
+    apartment_id BIGINT,
+    viewed_at DATE,
+    is_wishlisted BOOLEAN,
+    call_to_action VARCHAR(50)
+) DISTSTYLE EVEN SORTKEY(viewed_at);
