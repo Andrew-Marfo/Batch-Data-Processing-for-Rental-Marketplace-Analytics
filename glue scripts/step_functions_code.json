@@ -1,0 +1,39 @@
+{
+    "Comment": "A Step Function with glue jobs to process rentals",
+    "StartAt": "Extraction",
+    "States": {
+      "Extraction": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun",
+        "Arguments": {
+          "JobName": "rds_to_s3_extraction"
+        },
+        "Next": "Crawl Raw Rentals Data"
+      },
+      "Crawl Raw Rentals Data": {
+        "Type": "Task",
+        "Arguments": {
+          "Name": "crawl_raw_rentals_data"
+        },
+        "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
+        "Next": "Curate and load data to s3"
+      },
+      "Curate and load data to s3": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun",
+        "Arguments": {
+          "JobName": "Curated_to_s3"
+        },
+        "Next": "Load data to redshift"
+      },
+      "Load data to redshift": {
+        "Type": "Task",
+        "Resource": "arn:aws:states:::glue:startJobRun",
+        "Arguments": {
+          "JobName": "Loading data to redshift"
+        },
+        "End": true
+      }
+    },
+    "QueryLanguage": "JSONata"
+  }
