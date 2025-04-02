@@ -49,7 +49,7 @@ DB_PORT=3306
    - Redshift data API access
 
 ### Glue Jobs Configuration
-1. Create the following Glue jobs:
+1. Create the following Glue jobs with the scripts provided in the `code/glue scripts` folder:
    - `rds_to_s3_extraction`
    - `Curated_to_s3`
    - `Loading data to redshift`
@@ -86,6 +86,8 @@ DB_PORT=3306
 ### MySQL Setup
 1. Execute ingestion scripts in order:
 ```bash
+python code/ingestion_scripts/apartments.py
+python code/ingestion_scripts/apartments_attributes.py
 python code/ingestion_scripts/bookings.py
 python code/ingestion_scripts/user_viewing.py
 ```
@@ -96,7 +98,7 @@ python code/ingestion_scripts/user_viewing.py
    - curated_layer
    - presentation_layer
 
-2. Execute schema creation scripts from `code/sql/curated_layer schema and tables.txt`
+2. Execute schema and table creation scripts from `code/sql/`
 
 ## Pipeline Components
 
