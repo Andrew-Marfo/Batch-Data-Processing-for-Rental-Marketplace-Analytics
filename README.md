@@ -1,9 +1,8 @@
-# Batch-Data-Processing-for-Rental-Marketplace-Analytics
+# Rental Marketplace Analytics Pipeline
 
 This project is an end-to-end data pipeline for rental marketplace which enables analytical reporting on renting listing and user interactions. The platform stores application data in an AWS Aurora MySQL database, and the goal of this pipeline is to extract these data, transform them to generate key business metrics and load them to a data warehouse (Amazon Redshift) for business intelligence and reporting.
 
 # Setup and Troubleshooting Guide
-## Rental Marketplace Analytics Pipeline
 
 ## Table of Contents
 1. [Prerequisites](#prerequisites)
