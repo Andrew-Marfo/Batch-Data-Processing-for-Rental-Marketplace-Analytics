@@ -1,39 +1,169 @@
 {
-    "Comment": "A Step Function with glue jobs to process rentals",
-    "StartAt": "Extraction",
-    "States": {
-      "Extraction": {
-        "Type": "Task",
-        "Resource": "arn:aws:states:::glue:startJobRun",
-        "Arguments": {
-          "JobName": "rds_to_s3_extraction"
-        },
-        "Next": "Crawl Raw Rentals Data"
+  "Comment": "A Step Function with glue jobs to process rentals with proper completion waiting",
+  "StartAt": "Extraction",
+  "States": {
+    "Extraction": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "rds_to_s3_extraction"
       },
-      "Crawl Raw Rentals Data": {
-        "Type": "Task",
-        "Arguments": {
-          "Name": "crawl_raw_rentals_data"
-        },
-        "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
-        "Next": "Curate and load data to s3"
-      },
-      "Curate and load data to s3": {
-        "Type": "Task",
-        "Resource": "arn:aws:states:::glue:startJobRun",
-        "Arguments": {
-          "JobName": "Curated_to_s3"
-        },
-        "Next": "Load data to redshift"
-      },
-      "Load data to redshift": {
-        "Type": "Task",
-        "Resource": "arn:aws:states:::glue:startJobRun",
-        "Arguments": {
-          "JobName": "Loading data to redshift"
-        },
-        "End": true
-      }
+      "Next": "Crawl Raw Rentals Data",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Extraction Failed"
+        }
+      ]
     },
-    "QueryLanguage": "JSONata"
+    "Crawl Raw Rentals Data": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::aws-sdk:glue:startCrawler",
+      "Parameters": {
+        "Name": "crawl_raw_rentals_data"
+      },
+      "Next": "Wait For Crawler Completion",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 10,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Crawler Failed"
+        }
+      ]
+    },
+    "Wait For Crawler Completion": {
+      "Type": "Wait",
+      "Seconds": 60,
+      "Next": "Get Crawler Status"
+    },
+    "Get Crawler Status": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::aws-sdk:glue:getCrawler",
+      "Parameters": {
+        "Name": "crawl_raw_rentals_data"
+      },
+      "Next": "Check Crawler Status",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 60,
+          "MaxAttempts": 30,
+          "BackoffRate": 1.5
+        }
+      ]
+    },
+    "Check Crawler Status": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$.Crawler.LastCrawl.Status",
+          "StringEquals": "SUCCEEDED",
+          "Next": "Curate and load data to s3"
+        },
+        {
+          "Variable": "$.Crawler.LastCrawl.Status",
+          "StringEquals": "FAILED",
+          "Next": "Crawler Failed"
+        }
+      ],
+      "Default": "Wait For Crawler Completion"
+    },
+    "Curate and load data to s3": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "Curated_to_s3"
+      },
+      "Next": "Load data to redshift",
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Curate Failed"
+        }
+      ]
+    },
+    "Load data to redshift": {
+      "Type": "Task",
+      "Resource": "arn:aws:states:::glue:startJobRun.sync",
+      "Parameters": {
+        "JobName": "Loading data to redshift"
+      },
+      "End": true,
+      "Retry": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "IntervalSeconds": 30,
+          "MaxAttempts": 3,
+          "BackoffRate": 2
+        }
+      ],
+      "Catch": [
+        {
+          "ErrorEquals": [
+            "States.ALL"
+          ],
+          "Next": "Load to Redshift Failed"
+        }
+      ]
+    },
+    "Extraction Failed": {
+      "Type": "Fail",
+      "Error": "ExtractionFailed",
+      "Cause": "Glue job rds_to_s3_extraction failed"
+    },
+    "Crawler Failed": {
+      "Type": "Fail",
+      "Error": "CrawlerFailed",
+      "Cause": "Failed to start or complete crawler crawl_raw_rentals_data"
+    },
+    "Curate Failed": {
+      "Type": "Fail",
+      "Error": "CurateFailed",
+      "Cause": "Glue job curated_to_s3 failed"
+    },
+    "Load to Redshift Failed": {
+      "Type": "Fail",
+      "Error": "RedshiftLoadFailed",
+      "Cause": "Glue job loading_data_to_redshift failed"
+    }
   }
+}
